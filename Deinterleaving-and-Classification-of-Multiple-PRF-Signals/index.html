@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hiro">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Deinterleaving and Classification of Multiple PRF Signals">
+<meta property="og:type" content="article">
+<meta property="og:title" content="廣範圍脈衝頻率混雜的雷達訊號之分類與解交織">
+<meta property="og:url" content="http://example.com/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/index.html">
+<meta property="og:site_name" content="Hiro Portfolio">
+<meta property="og:description" content="Deinterleaving and Classification of Multiple PRF Signals">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/pdw2.png">
+<meta property="article:published_time" content="2021-07-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-18T05:57:12.099Z">
+<meta property="article:author" content="Hiro">
+<meta property="article:tag" content="碩士論文">
+<meta property="article:tag" content="產學專案">
+<meta property="article:tag" content="訊號模擬">
+<meta property="article:tag" content="訊號處理">
+<meta property="article:tag" content="解交織">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/pdw2.png">
+  
+  
+  <title>廣範圍脈衝頻率混雜的雷達訊號之分類與解交織 - Hiro Portfolio</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hiro Portfolio</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/post_banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="廣範圍脈衝頻率混雜的雷達訊號之分類與解交織">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">廣範圍脈衝頻率混雜的雷達訊號之分類與解交織</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Deinterleaving-and-Classification-of-Multiple-PRF-Signals"><a href="#Deinterleaving-and-Classification-of-Multiple-PRF-Signals" class="headerlink" title="Deinterleaving and Classification of Multiple PRF Signals"></a>Deinterleaving and Classification of Multiple PRF Signals</h1><blockquote>
+<p>此作品為產學合作計畫及碩士論文</p>
+</blockquote>
+<p>分析和識別雷達訊號是電子支援量測的重要目標，接收到的訊號通常來自多個雷達。在現代電子戰中，雷達擁有各自的頻率參數，並在多組頻率參數之間切換。所接收的訊號因可能混合高、中、低頻雷達所發射之訊號，在脈波彼此重疊之情況下，將雷達訊號分離為相當挑戰的任務。</p>
+<p>本論文提出了:</p>
+<ul>
+<li><p>QPSE Encoder</p>
+<ul>
+<li>解決雷達發射器訊號的特徵在作為 deinterleaving 神經網路輸入維度的問題。</li>
+</ul>
+</li>
+<li><p>QPSE 序列的多組雷達混合方式</p>
+<ul>
+<li>模擬 Pulse 訊號丟失、重疊、混淆</li>
+</ul>
+</li>
+<li><p>多重尺度神經網路</p>
+<ul>
+<li><p>模擬 15 個雷達混和訊號</p>
+</li>
+<li><p>得到每個雷達模式的分類結果</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="問題描述"><a href="#問題描述" class="headerlink" title="問題描述"></a>問題描述</h2><h3 id="PDWs-Pulse-descriptor-words"><a href="#PDWs-Pulse-descriptor-words" class="headerlink" title="PDWs: Pulse descriptor words"></a>PDWs: Pulse descriptor words</h3><p>PDWs是用於描述雷達 Pulse Stream 各種參數，其中以下幾種參數作為本文研究目標:</p>
+<ul>
+<li><p>TOA: Time of arrival</p>
+</li>
+<li><p>PW: Pulse width</p>
+</li>
+<li><p>PRI: Pulse repetition interval</p>
+</li>
+<li><p>PRF: Pulse repetition frequency</p>
+</li>
+</ul>
+<p>一段 Pulse Stream 能以 TOA 和 PW 序列表示。<br>TOA 序列可以寫成如下：</p>
+<p>$$<br>TOA\ Sequence&#x3D;[t_1,t_2,\ldots,t_i,\ldots,t_N]<br>$$</p>
+<p>PW 序列可以寫成如下：</p>
+<p>$$<br>PW\ Sequence&#x3D;[t_{t_1},t_{t_2},\ldots,t_{t_i},\ldots,t_{t_N}]<br>$$</p>
+<p>若本文有一段 PRI 為 2000 μs, PW 為 200 μs 的雷達訊號：</p>
+<p>$$<br>TOA\ Sequence &#x3D; [10,2010,4010,6010,\ldots]μs<br>$$</p>
+<p>$$<br>PW\ Sequence &#x3D; [200,200,200,200,\ldots]μs<br>$$</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/pdw.png" srcset="/img/loading.gif" lazyload class="">
+
+<h3 id="Pulse-Missing"><a href="#Pulse-Missing" class="headerlink" title="Pulse Missing"></a>Pulse Missing</h3><p>雷達可能設有規則或隨機的 PRI&#x2F;PW Jitter，及一定的時間切換 PRI&#x2F;PW 參數防止訊號追蹤或干擾。<br>有來自不同雷達的 TOA 且有相似的 PW 時 ，可能導致 PRI 計算錯誤，如圖中 Overlap。<br>雷達的 TOA 出現在某個 TOA 的 PW 中，可能導致 TOA 被遮蓋，並且一些 PW 變得相似或失去它的特徵，如圖中 Resemble 和 Morph。</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/pulse_missing.png" srcset="/img/loading.gif" lazyload class="">
+
+<h2 id="提出方法"><a href="#提出方法" class="headerlink" title="提出方法"></a>提出方法</h2><h3 id="QPSE-Quantized-Pulse-Stream-Expression"><a href="#QPSE-Quantized-Pulse-Stream-Expression" class="headerlink" title="QPSE: Quantized Pulse Stream Expression"></a>QPSE: Quantized Pulse Stream Expression</h3><p>TOA 序列長度會隨著 Pulses 不斷到達而無限加大。<br>取一段相同時間長度的訊號，有不同數量的 Pulse 到達，會使 TOA 序列的長度變化。</p>
+<p>$$<br>TOA\ Sequence &#x3D; [10,2010,4010,6010,\ldots,t_N]μs<br>$$</p>
+<p>$$<br>PW\ Sequence &#x3D; [200,200,200,200,\ldots,t_{t_N}]μs<br>$$</p>
+<p>為了讓神經網絡模型盡可能輕鬆地處理輸入，<br>本文提出 Quantized Pulse Stream Expression (QPSE) 序列。<br>使 TOA 序列與 PW 序列經過設置過的參數編碼，<br>相同時間長度的頻域 TOA 和 PW 序列編碼成量化過的時域 QPSE 序列。</p>
+<p>QPSE 序列設置 $t_{unit}$: Quantization Interval 容忍 PRI 的 jitter。<br>設置適當的 $t_{unit}$ 使 QPSE 序列擁有組量的 $ntd$: Number of TOA in Duration。</p>
+<h3 id="Pulse-Mixture"><a href="#Pulse-Mixture" class="headerlink" title="Pulse Mixture"></a>Pulse Mixture</h3><p>同一區間內會出現多個 Pulse 時，本文使用以下兩種方法，選出其中一個 TOA 作為這個區間的代表 Pulse。<br>區間內的其他的 Pulse 則可以當作被 Overlap 影響而被捨棄，做為模擬 Pulse Missing 的情境。</p>
+<h4 id="PW-Maxima-Selection-in-Interval"><a href="#PW-Maxima-Selection-in-Interval" class="headerlink" title="PW Maxima Selection in Interval"></a>PW Maxima Selection in Interval</h4><p>在 $t_{unit}$ 之中 PW 最大的 TOA 代表這個區間的響應。</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/pw-maxima-selection-in-interval.png" srcset="/img/loading.gif" lazyload class="">
+
+<h4 id="TOA-Random-Selection-in-Interval"><a href="#TOA-Random-Selection-in-Interval" class="headerlink" title="TOA Random Selection in Interval"></a>TOA Random Selection in Interval</h4><p>在 $t_{unit}$ 之中隨機選取出一個 TOA 代表這個區間的響應。</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/toa-random-selection-in-interval.png" srcset="/img/loading.gif" lazyload class="">
+
+<h3 id="POI-Pulse-of-Interest"><a href="#POI-Pulse-of-Interest" class="headerlink" title="POI: Pulse of Interest"></a>POI: Pulse of Interest</h3><p>為取得乾淨的序列，把含有不在目標 PW 值的 TOA 從序列中去除。</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/poi.png" srcset="/img/loading.gif" lazyload class="">
+
+<h3 id="Multiscale-Neural-Network"><a href="#Multiscale-Neural-Network" class="headerlink" title="Multiscale Neural Network"></a>Multiscale Neural Network</h3><p>Pulse strream 使用不同參數設置的 QPSE encoder，得到在不同尺度下的訊號訊息。<br>搭配本文設計可將多組 QPSE 序列作為輸入的 Multiscale neural network，<br>得出類別為雷達的 1 到 5 模式或關閉的分類輸出。</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/net.png" srcset="/img/loading.gif" lazyload class="">
+
+<h2 id="實驗"><a href="#實驗" class="headerlink" title="實驗"></a>實驗</h2><p>本文目前已知有 15 個雷達將會混雜於接下來出現的訊號之中。<br>而這 15 個雷達個別有 5 個模式每一個雷達都有自己獨立的 Jitter 範圍與模式切換時間。<br>高中低頻率雷達各五個。</p>
+<h3 id="Data-Generation"><a href="#Data-Generation" class="headerlink" title="Data Generation"></a>Data Generation</h3><p>取出 15 個雷達的 PRI&#x2F;PW 參數，可定義出總共 75 種 emitter 的訊號產生器，產生 TOA 序列 和 PW 序列 16000 筆資料。<br>90% 作為訓練資料，10% 作為驗證資料。</p>
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>模擬各個雷達模式切換時間的各種組合，<br>在每一次迭代時，<br>會以隨機分佈的方式，<br>在 15 個雷達中，<br>決定各自的模式 1~5 或關閉。<br>並在產生完成的資料中，<br>隨機挑出選中的模式的 TOA 序列和 PW 序列。<br>使用之前設好參數的 5 個 QPSE Encoder 編碼出 5 個 QPSE 序列。<br>然後進行 PW Maxima Selection 或 TOA Random Selection 混合。<br>混合完成後使用 POI 將訊號進行精簡。</p>
+<img src="/Deinterleaving-and-Classification-of-Multiple-PRF-Signals/training_flow.png" srcset="/img/loading.gif" lazyload class="">
+
+<h2 id="結果"><a href="#結果" class="headerlink" title="結果"></a>結果</h2><p>本文針對 PW Maxima Selection 和 TOA Random Selection 兩種混合方式，<br>poi 是否參與，<br>還有兩種不同的 $ntd$ ，<br>進行多次重複訓練與驗證。<br>發現高 PRF 與中 PRF 雷達模型在兩種混合方式是否使用 POI 和不同的 ${ntd}_{min}$ ，<br>得到準確度超過 0.9 的結果。</p>
+<p>通過 POI 之後，低 PRF 雷達訊號<br>在 PW Maxima Selection 的仍然遭受到大幅度的覆蓋，但是網路的準確度可提升至 0.4。<br>在 TOA Random Selection，可達到 0.9 的準確度 。</p>
+<table border=0 cellpadding=0 cellspacing=0 width=869>
+    <col width=90>
+    <col width=95>
+    <col width=76 span=8>
+    <tr>
+        <td colspan=2 width=185>　</td>
+        <td colspan=4 width=304>PW Maxima Selection</td>
+        <td colspan=4 width=380>TOA Random Selection</td>
+    </tr>
+    <tr>
+        <td colspan=2>with POI</td>
+        <td colspan=2>x</td>
+        <td colspan=2>o</td>
+        <td colspan=2>x</td>
+        <td colspan=2>o</td>
+    </tr>
+    <tr>
+        <td colspan=2>${ntd}_{min}$</td>
+        <td>32</td>
+        <td>64</td>
+        <td>32</td>
+        <td>64</td>
+        <td>32</td>
+        <td>64</td>
+        <td>32</td>
+        <td>64</td>
+    </tr>
+    <tr>
+        <td rowspan=5>High<br>PRF</td>
+        <td>radar1</td>
+        <td>0.984</td>
+        <td>0.961</td>
+        <td>0.981</td>
+        <td>0.996</td>
+        <td>0.956</td>
+        <td>0.950</td>
+        <td>0.993</td>
+        <td>0.997</td>
+    </tr>
+    <tr>
+        <td>radar2</td>
+        <td>0.984</td>
+        <td>0.986</td>
+        <td>0.988</td>
+        <td>0.996</td>
+        <td>0.957</td>
+        <td>0.980</td>
+        <td>0.996</td>
+        <td>0.953</td>
+    </tr>
+    <tr>
+        <td>radar3</td>
+        <td>0.984</td>
+        <td>0.981</td>
+        <td>0.984</td>
+        <td>0.988</td>
+        <td>0.957</td>
+        <td>0.980</td>
+        <td>0.987</td>
+        <td>0.983</td>
+    </tr>
+    <tr>
+        <td>radar4</td>
+        <td>0.968</td>
+        <td>0.972</td>
+        <td>0.992</td>
+        <td>0.981</td>
+        <td>0.956</td>
+        <td>0.964</td>
+        <td>0.997</td>
+        <td>0.997</td>
+    </tr>
+    <tr>
+        <td>radar5</td>
+        <td>0.979</td>
+        <td>0.982</td>
+        <td>0.980</td>
+        <td>0.981</td>
+        <td>0.953</td>
+        <td>0.989</td>
+        <td>0.981</td>
+        <td>0.951</td>
+    </tr>
+    <tr>
+        <td rowspan=5>Medium<br>PRF</td>
+        <td>radar6</td>
+        <td>0.981</td>
+        <td>0.987</td>
+        <td>0.957</td>
+        <td>0.984</td>
+        <td>0.901</td>
+        <td>0.919</td>
+        <td>0.980</td>
+        <td>0.977</td>
+    </tr>
+    <tr>
+        <td>radar7</td>
+        <td>0.984</td>
+        <td>0.987</td>
+        <td>0.984</td>
+        <td>0.977</td>
+        <td>0.910</td>
+        <td>0.966</td>
+        <td>0.984</td>
+        <td>0.981</td>
+    </tr>
+    <tr>
+        <td>radar8</td>
+        <td>0.988</td>
+        <td>0.985</td>
+        <td>0.984</td>
+        <td>0.977</td>
+        <td>0.941</td>
+        <td>0.987</td>
+        <td>0.982</td>
+        <td>0.980</td>
+    </tr>
+    <tr>
+        <td>radar9</td>
+        <td>0.955</td>
+        <td>0.987</td>
+        <td>0.988</td>
+        <td>0.996</td>
+        <td>0.953</td>
+        <td>0.987</td>
+        <td>0.981</td>
+        <td>0.986</td>
+    </tr>
+    <tr>
+        <td>radar10</td>
+        <td>0.992</td>
+        <td>0.987</td>
+        <td>0.981</td>
+        <td>0.984</td>
+        <td>0.961</td>
+        <td>0.984</td>
+        <td>0.981</td>
+        <td>0.982</td>
+    </tr>
+    <tr>
+        <td rowspan=5>Low<br>PRF</td>
+        <td>radar11</td>
+        <td>0.188</td>
+        <td>0.170</td>
+        <td>0.504</td>
+        <td>0.371</td>
+        <td>0.242</td>
+        <td>0.165</td>
+        <td>0.873</td>
+        <td>0.857</td>
+    </tr>
+    <tr>
+        <td>radar12</td>
+        <td>0.191</td>
+        <td>0.166</td>
+        <td>0.507</td>
+        <td>0.352</td>
+        <td>0.327</td>
+        <td>0.167</td>
+        <td>0.913</td>
+        <td>0.932</td>
+    </tr>
+    <tr>
+        <td>radar13</td>
+        <td>0.184</td>
+        <td>0.227</td>
+        <td>0.539</td>
+        <td>0.375</td>
+        <td>0.195</td>
+        <td>0.210</td>
+        <td>0.857</td>
+        <td>0.875</td>
+    </tr>
+    <tr>
+        <td>radar14</td>
+        <td>0.168</td>
+        <td>0.186</td>
+        <td>0.441</td>
+        <td>0.371</td>
+        <td>0.165</td>
+        <td>0.169</td>
+        <td>0.845</td>
+        <td>0.926</td>
+    </tr>
+    <tr>
+        <td>radar15</td>
+        <td>0.250</td>
+        <td>0.169</td>
+        <td>0.465</td>
+        <td>0.352</td>
+        <td>0.328</td>
+        <td>0.172</td>
+        <td>0.847</td>
+        <td>0.924</td>
+    </tr>
+    <tr>
+        <td colspan=2>High Avg.</td>
+        <td>0.980</td>
+        <td>0.977</td>
+        <td>0.985</td>
+        <td>0.988</td>
+        <td>0.956</td>
+        <td>0.973</td>
+        <td>0.991</td>
+        <td>0.976</td>
+    </tr>
+    <tr>
+        <td colspan=2>Mid Avg.</td>
+        <td>0.980</td>
+        <td>0.986</td>
+        <td>0.979</td>
+        <td>0.984</td>
+        <td>0.933</td>
+        <td>0.968</td>
+        <td>0.982</td>
+        <td>0.981</td>
+    </tr>
+    <tr>
+        <td colspan=2>Low Avg.</td>
+        <td>0.196</td>
+        <td>0.184</td>
+        <td>0.491</td>
+        <td>0.364</td>
+        <td>0.252</td>
+        <td>0.177</td>
+        <td>0.867</td>
+        <td>0.903</td>
+    </tr>
+    <tr>
+        <td colspan=2>Total Avg.</td>
+        <td>0.719</td>
+        <td>0.716</td>
+        <td>0.818</td>
+        <td>0.779</td>
+        <td>0.714</td>
+        <td>0.706</td>
+        <td>0.946</td>
+        <td>0.953</td>
+    </tr>
+</table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%A2%A9%E5%A3%AB%E8%AB%96%E6%96%87/">碩士論文</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%94%A2%E5%AD%B8%E5%B0%88%E6%A1%88/">產學專案</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%A8%8A%E8%99%9F%E6%A8%A1%E6%93%AC/">訊號模擬</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%A8%8A%E8%99%9F%E8%99%95%E7%90%86/">訊號處理</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%A7%A3%E4%BA%A4%E7%B9%94/">解交織</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Sphygmomanometer-Digit-Recognition-System/">
+                        <span class="hidden-mobile">血壓計數值辨識系統</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>© 2022 Hiro</a> <br> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <a target="_blank" rel="noopener" href="https://www.flaticon.com/free-icon/resume-and-cv_2427466" title="resume and cv icons">Page Icon created by Vitaly Gorbachev</a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
