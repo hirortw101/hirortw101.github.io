@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-TW" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Hiro">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Kaggle: APTOS2019 Blindness Detection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle競賽銀牌: 糖尿病視網膜病變檢測">
+<meta property="og:url" content="http://example.com/Kaggle-APTOS-2019-Blindness-Detection/index.html">
+<meta property="og:site_name" content="Hiro Portfolio">
+<meta property="og:description" content="Kaggle: APTOS2019 Blindness Detection">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="http://example.com/Kaggle-APTOS-2019-Blindness-Detection/index_img.png">
+<meta property="article:published_time" content="2019-08-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-05-18T05:38:49.429Z">
+<meta property="article:author" content="Hiro">
+<meta property="article:tag" content="大學專題">
+<meta property="article:tag" content="Kaggle">
+<meta property="article:tag" content="大數據競賽">
+<meta property="article:tag" content="影像處理">
+<meta property="article:tag" content="人機介面">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/Kaggle-APTOS-2019-Blindness-Detection/index_img.png">
+  
+  
+  <title>Kaggle競賽銀牌: 糖尿病視網膜病變檢測 - Hiro Portfolio</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hiro Portfolio</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首頁
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                關於
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/Kaggle-APTOS-2019-Blindness-Detection/post_banner.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Kaggle競賽銀牌: 糖尿病視網膜病變檢測">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Kaggle競賽銀牌: 糖尿病視網膜病變檢測</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Kaggle競賽銀牌-APTOS2019糖尿病視網膜病變檢測"><a href="#Kaggle競賽銀牌-APTOS2019糖尿病視網膜病變檢測" class="headerlink" title="Kaggle競賽銀牌: APTOS2019糖尿病視網膜病變檢測"></a>Kaggle競賽銀牌: <br>APTOS2019糖尿病視網膜病變檢測</h1><blockquote>
+<p>此作品為大數據競賽及大學畢業專題</p>
+</blockquote>
+<p>我們參加 APTOS 與 Kaggle 合作舉辦的大數據競賽，使用EfficientNet搭配多種深度神經網路的訓練技巧，建立一套 <strong>全球排名 Top 1% 準確度</strong> 的糖尿病視網膜病變分類網路，並設計簡易圖形化介面，讓使用者容易使用。</p>
+<h2 id="比賽簡介"><a href="#比賽簡介" class="headerlink" title="比賽簡介"></a>比賽簡介</h2><img src="/Kaggle-APTOS-2019-Blindness-Detection/cover.png" srcset="/img/loading.gif" lazyload class="">
+
+<p>糖尿病經常引起視網膜病變，導致血管滲漏，造成視網膜組織傷害，以致所看到的影像變成模糊、扭曲或部份喪失。<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/aptos2019-blindness-detection">APTOS 2019 Blindness Detection</a> 提供 50,000 美元獎金池及大量眼底鏡影像，參賽者藉由深度學習技術自動判斷視網膜是否病變或病變之程度。減輕專業醫師負擔，並協助患者及早進行診斷與治療，預防永久失明。</p>
+<h2 id="資料集"><a href="#資料集" class="headerlink" title="資料集"></a>資料集</h2><h3 id="本此比賽的資料庫"><a href="#本此比賽的資料庫" class="headerlink" title="本此比賽的資料庫"></a>本此比賽的資料庫</h3><p>根據以下等級，臨床醫生根據 0 至 4 的等級評估每張眼底鏡中的糖尿病視網膜病變程度。</p>
+<table>
+<thead>
+<tr>
+<th>分級</th>
+<th>眼底鏡</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0<br>No DR</td>
+<td><img src="/Kaggle-APTOS-2019-Blindness-Detection/dr0.jpg" srcset="/img/loading.gif" lazyload class=""></td>
+<td>健康的眼睛</td>
+</tr>
+<tr>
+<td>1<br>Mild DR</td>
+<td><img src="/Kaggle-APTOS-2019-Blindness-Detection/dr1.jpg" srcset="/img/loading.gif" lazyload class=""></td>
+<td>僅限微動脈瘤</td>
+</tr>
+<tr>
+<td>2<br>Moderate DR</td>
+<td><img src="/Kaggle-APTOS-2019-Blindness-Detection/dr2.jpg" srcset="/img/loading.gif" lazyload class=""></td>
+<td>微動脈瘤<br>視網膜內出血</td>
+</tr>
+<tr>
+<td>3<br>Severe DR</td>
+<td><img src="/Kaggle-APTOS-2019-Blindness-Detection/dr3.jpg" srcset="/img/loading.gif" lazyload class=""></td>
+<td>大量視網膜內出血<br>念珠菌感染<br>視網膜內微血管異常增長<br>但沒有 PDR 現象</td>
+</tr>
+<tr>
+<td>4<br>Proliferative DR</td>
+<td><img src="/Kaggle-APTOS-2019-Blindness-Detection/dr4.jpg" srcset="/img/loading.gif" lazyload class=""></td>
+<td>兩種情況之一<br>新生血管形成<br>玻璃體&#x2F;視網膜前出血</td>
+</tr>
+</tbody></table>
+<p>這些眼底鏡圖像從多個診所使用各種相機收集而來。圖像可能包含偽影、失焦、曝光不足或過度曝光。</p>
+<ul>
+<li><p>3662 Training set</p>
+<ul>
+<li>有圖片、有標籤</li>
+</ul>
+</li>
+<li><p>1928 Public test set</p>
+<ul>
+<li>有圖片、無標籤，於比賽期間上傳至評分伺服器可取得 Public Leaderboard 分數</li>
+</ul>
+</li>
+<li><p>20GB Private test set</p>
+<ul>
+<li>隱藏的資料，用於結算比賽成績的 Private Leaderboard</li>
+</ul>
+</li>
+</ul>
+<h3 id="額外的資料"><a href="#額外的資料" class="headerlink" title="額外的資料"></a>額外的資料</h3><p>2015在 Kaggle 由 California Healthcare Foundation 贊助舉辦的另一場<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/diabetic-retinopathy-detection">糖尿病視網膜病變檢測競賽</a>所提供的資料庫，擁有與本次競賽相同的分類標籤與眼底鏡圖片。可作為本次競賽的擴充資料使用。</p>
+<ul>
+<li><p>35126 Training set</p>
+</li>
+<li><p>53576 Testing set</p>
+</li>
+</ul>
+<h2 id="準確度公式"><a href="#準確度公式" class="headerlink" title="準確度公式"></a>準確度公式</h2><p>Quadratic Kappa Metric<br>預測結果與實際結果偏差越大，扣分越重。滿分為 1 最低為 0。</p>
+<!--
+$O$ 為預測值與實際值得混淆矩陣
+$E$ 為將預測與實際的各類別數量直方圖作外積
+$N$ 為類別數量
+$i, j$ 為混淆矩陣的位置對應點
+
+$$
+w_{i,j}=\cfrac{(i-j)^2}{(N-1)^2}
+$$
+
+$$
+κ=1-\cfrac{∑_{i,j}w_{i,}O_{i,j}}{∑_{i,j}w_{i,j}E_{i,j}}
+$$
+
+\-->
+
+<h2 id="模型訓練"><a href="#模型訓練" class="headerlink" title="模型訓練"></a>模型訓練</h2><h3 id="資料前處理"><a href="#資料前處理" class="headerlink" title="資料前處理"></a>資料前處理</h3><img src="/Kaggle-APTOS-2019-Blindness-Detection/diag_training.drawio.svg" srcset="/img/loading.gif" lazyload class="">
+
+<h4 id="資料增強-Data-augmentation"><a href="#資料增強-Data-augmentation" class="headerlink" title="資料增強 Data augmentation"></a>資料增強 Data augmentation</h4><p>每張圖像傳入神經網路訓練前，對其進行隨機的旋轉、調整大小、比例尺寸，或者改變亮度色溫、翻轉等處理。如此操作可以提升資料多樣性，避免網路過度擬合，且增強網路的泛化能力。</p>
+<img src="/Kaggle-APTOS-2019-Blindness-Detection/da.png" srcset="/img/loading.gif" lazyload class="">
+
+<h4 id="遷移式學習"><a href="#遷移式學習" class="headerlink" title="遷移式學習"></a>遷移式學習</h4><p>選用當時 ImageNet 分類的 SOTA 模型: EfficientNet，利用 ImageNet 的 Pretrain Weight 預先對本次競賽和額外的資料集做遷移式學習，再用訓練完的 Weight 對本次競賽的資料做 Fine-tune，以保證模型收斂能確實符合本次競賽。</p>
+<h4 id="K-fold"><a href="#K-fold" class="headerlink" title="K-fold"></a>K-fold</h4><p>K-fold 選作交叉驗證 (Cross Validation) 方法。將資料隨機平均分成 5 個集合，然後將其中一個集合當做驗證資料，剩下的 4 個集合做為訓練資料，重複進行到每一個集合都被當過驗證資料後，可得到五個 Weight。以這五個模型對 Public test set 資料進行預測，即可取出最佳的 Weight。</p>
+<h3 id="資料後處理"><a href="#資料後處理" class="headerlink" title="資料後處理"></a>資料後處理</h3><img src="/Kaggle-APTOS-2019-Blindness-Detection/diag_inference.drawio.svg" srcset="/img/loading.gif" lazyload class="">
+
+<h4 id="TTA-Test-Time-Augmentation"><a href="#TTA-Test-Time-Augmentation" class="headerlink" title="TTA: Test Time Augmentation"></a>TTA: Test Time Augmentation</h4><p>針對測試資料做影像加強，包括不同區域裁剪和更改縮放程度等，並對不同版本的圖像進行預測，能得到多個結果，最後進行平均輸出作為最終結果，如此能夠提高結果的穩定性與精確度。如下表可見基於 EfficientNet B4 的模型，在加入 TTA 後，Public Leaderboard 分數有了顯著的上升。</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Post Process</th>
+<th>Public Leaderboard Score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>EfficientNet B4</strong></td>
+<td>-</td>
+<td>0.805</td>
+</tr>
+<tr>
+<td><strong>EfficientNet B4</strong></td>
+<td>TTA</td>
+<td>0.813</td>
+</tr>
+</tbody></table>
+<h4 id="Model-Ensemble"><a href="#Model-Ensemble" class="headerlink" title="Model Ensemble"></a>Model Ensemble</h4><p>訓練多組模型，將預測結果做平均，提升預測準確度及穩定度，進行多組實驗後我們決定選用 EfficientNet B4、EfficientNet B5 進行 Ensemble。</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Cross Validation Score</th>
+<th>Public Leaderboard Score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>EfficientNet B4</strong></td>
+<td>0.9381</td>
+<td>0.813</td>
+</tr>
+<tr>
+<td><strong>EfficientNet B5</strong></td>
+<td>0.9454</td>
+<td>0.817</td>
+</tr>
+<tr>
+<td><strong>Ensemble B4 &amp; B5</strong></td>
+<td></td>
+<td>0.822</td>
+</tr>
+</tbody></table>
+<h2 id="競賽成果-Top-1"><a href="#競賽成果-Top-1" class="headerlink" title="競賽成果 Top 1%"></a>競賽成果 Top 1%</h2><table>
+<thead>
+<tr>
+<th>Leaderboard</th>
+<th>Rank</th>
+<th>Score</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Public</strong></td>
+<td>#88</td>
+<td>0.822879</td>
+</tr>
+<tr>
+<td><strong>Private</strong></td>
+<td>#19 (Final standings)</td>
+<td>0.929524</td>
+</tr>
+</tbody></table>
+<img src="/Kaggle-APTOS-2019-Blindness-Detection/leaderboard.png" srcset="/img/loading.gif" lazyload class="">
+
+<h2 id="GUI設計"><a href="#GUI設計" class="headerlink" title="GUI設計"></a>GUI設計</h2><p>使用 PyQt5 設計使用者介面，使模型能被簡易使用。</p>
+<div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/Kaggle-APTOS-2019-Blindness-Detection/gui1.png" srcset="/img/loading.gif" lazyload class=""></div><div class="group-image-wrap"><img src="/Kaggle-APTOS-2019-Blindness-Detection/gui2.png" srcset="/img/loading.gif" lazyload class=""></div></div></div>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%A4%A7%E5%AD%B8%E5%B0%88%E9%A1%8C/">大學專題</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Kaggle/">Kaggle</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%A4%A7%E6%95%B8%E6%93%9A%E7%AB%B6%E8%B3%BD/">大數據競賽</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86/">影像處理</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%BA%E6%A9%9F%E4%BB%8B%E9%9D%A2/">人機介面</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Sphygmomanometer-Digit-Recognition-System/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">血壓計數值辨識系統</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目錄</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a>© 2022 Hiro</a> <br> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br> <a target="_blank" rel="noopener" href="https://www.flaticon.com/free-icon/resume-and-cv_2427466" title="resume and cv icons">Page Icon created by Vitaly Gorbachev</a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
