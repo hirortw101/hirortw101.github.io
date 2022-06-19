@@ -25,13 +25,13 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://hirortw.ml/Sphygmomanometer-Digit-Recognition-System/index_img.png">
 <meta property="article:published_time" content="2020-11-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-30T12:32:01.352Z">
+<meta property="article:modified_time" content="2022-06-15T08:12:10.961Z">
 <meta property="article:author" content="Hiro">
 <meta property="article:tag" content="產學專案">
-<meta property="article:tag" content="影像處理">
-<meta property="article:tag" content="人機介面">
 <meta property="article:tag" content="系統設計">
+<meta property="article:tag" content="影像處理">
 <meta property="article:tag" content="邊緣運算">
+<meta property="article:tag" content="人機介面">
 <meta property="article:tag" content="APP客戶端">
 <meta property="article:tag" content="YOLOv5">
 <meta name="twitter:card" content="summary_large_image">
@@ -188,7 +188,7 @@
               <h1 id="運算伺服器和-APP-整合的血壓計數值辨識系統"><a href="#運算伺服器和-APP-整合的血壓計數值辨識系統" class="headerlink" title="運算伺服器和 APP 整合的血壓計數值辨識系統"></a>運算伺服器和 APP 整合的<br>血壓計數值辨識系統</h1><blockquote>
 <p>此作品為產學合作計畫</p>
 </blockquote>
-<p>本系統目標為透過行動裝置之相機鏡頭，擷取2款目標血壓計螢幕的清晰影像，上傳至伺服器並偵測上數字。縮短使用傳統血壓計時需要雲端紀錄時的手續。</p>
+<p>本系統目標為透過行動裝置之相機鏡頭，擷取 2 款目標血壓計螢幕的清晰影像，上傳至伺服器並偵測上數字。縮短使用傳統血壓計時需要雲端紀錄時的手續。</p>
 <h2 id="系統特色"><a href="#系統特色" class="headerlink" title="系統特色"></a>系統特色</h2><ul>
 <li><p>行動裝置端功能</p>
 <ul>
@@ -215,21 +215,21 @@
 
 <h2 id="行動裝置端功能"><a href="#行動裝置端功能" class="headerlink" title="行動裝置端功能"></a>行動裝置端功能</h2><img src="/Sphygmomanometer-Digit-Recognition-System/diag1.png" srcset="/img/loading.gif" lazyload class="">
 
-<h3 id="成像清晰度判定"><a href="#成像清晰度判定" class="headerlink" title="成像清晰度判定"></a>成像清晰度判定</h3><p>使用小型神經網路在手機上執行 Real-time 運算，協助使用者以類似QR Code掃描的方式，拍到沒有過暗、過曝、歪斜、變形與反光的血壓計面板照片。</p>
+<h3 id="成像清晰度判定"><a href="#成像清晰度判定" class="headerlink" title="成像清晰度判定"></a>成像清晰度判定</h3><p>使用小型神經網路在手機上執行 Real-time 運算，過濾過暗、過曝、歪斜、變形與反光的血壓計面板照片。經過我們的微調後，使用者能以類似 QR Code 掃描的體驗，拍攝照片。</p>
 <img src="/Sphygmomanometer-Digit-Recognition-System/diag3.png" srcset="/img/loading.gif" lazyload class="">
 
-<h3 id="血壓計型號辨識"><a href="#血壓計型號辨識" class="headerlink" title="血壓計型號辨識"></a>血壓計型號辨識</h3><p>使用小型神經網路在手機上辨識2款目標血壓計型號（OMRON HEM-732FORA、FORA D40G），於上傳圖片時告知伺服器即將處理之血壓計型號。</p>
+<h3 id="血壓計型號辨識"><a href="#血壓計型號辨識" class="headerlink" title="血壓計型號辨識"></a>血壓計型號辨識</h3><p>使用小型神經網路在手機上辨識 2 款目標血壓計型號（OMRON HEM-732FORA、FORA D40G），於上傳圖片時告知伺服器即將處理之血壓計型號。</p>
 <img src="/Sphygmomanometer-Digit-Recognition-System/diag5.png" srcset="/img/loading.gif" lazyload class="">
 
 <h2 id="伺服器端功能"><a href="#伺服器端功能" class="headerlink" title="伺服器端功能"></a>伺服器端功能</h2><img src="/Sphygmomanometer-Digit-Recognition-System/diag7.png" srcset="/img/loading.gif" lazyload class="">
 
-<h3 id="YOLOv5-LED-顯示面板定位模型"><a href="#YOLOv5-LED-顯示面板定位模型" class="headerlink" title="YOLOv5 LED 顯示面板定位模型"></a>YOLOv5 LED 顯示面板定位模型</h3><p>使用YOLOv5 LED顯示面板定位模型，剪取顯示面版剔除多於背景，以利於影像旋轉校正和數字定位。</p>
+<h3 id="YOLOv5-LED-顯示面板定位模型"><a href="#YOLOv5-LED-顯示面板定位模型" class="headerlink" title="YOLOv5 LED 顯示面板定位模型"></a>YOLOv5 LED 顯示面板定位模型</h3><p>使用 YOLOv5 LED 顯示面板定位模型，剪取顯示面版剔除多於背景，以利於影像旋轉校正和數字定位。</p>
 <img src="/Sphygmomanometer-Digit-Recognition-System/panel_detect2.png" srcset="/img/loading.gif" lazyload class="">
 
-<h3 id="影像旋轉校正演算法"><a href="#影像旋轉校正演算法" class="headerlink" title="影像旋轉校正演算法"></a>影像旋轉校正演算法</h3><p>使用Canny邊緣檢測(b) 和霍夫直線檢測(c) 找出所有潛在的直線線段。由於螢幕邊框和七段顯示器數字邊緣皆為矩形，因此大多數線段方向會是螢幕的 x 軸或 y 軸方向。計算重複最多的和次多的直線線段角度，就能得到螢幕近似的 x、y 軸(d)，並將其轉正(e)。</p>
+<h3 id="影像旋轉校正演算法"><a href="#影像旋轉校正演算法" class="headerlink" title="影像旋轉校正演算法"></a>影像旋轉校正演算法</h3><p>使用 Canny 邊緣檢測(b) 和霍夫直線檢測(c) 找出所有潛在的直線線段。由於螢幕邊框和七段顯示器數字邊緣皆為矩形，因此大多數線段方向會是螢幕的 x 軸或 y 軸方向。計算重複最多的和次多的直線線段角度，就能得到螢幕近似的 x、y 軸(d)，並將其轉正(e)。</p>
 <img src="/Sphygmomanometer-Digit-Recognition-System/diag8.png" srcset="/img/loading.gif" lazyload class="">
 
-<h3 id="YOLOv5-LED-數字辨識模型-amp-數值位置定位"><a href="#YOLOv5-LED-數字辨識模型-amp-數值位置定位" class="headerlink" title="YOLOv5 LED 數字辨識模型 &amp; 數值位置定位"></a>YOLOv5 LED 數字辨識模型 &amp; 數值位置定位</h3><p>使用YOLOv5 LED 數字辨識模型，得到每個數字的值、預測框、以及位置資訊。最後再將這些資訊轉換為血壓、心跳的數值做輸出。</p>
+<h3 id="YOLOv5-LED-數字辨識模型-amp-數值位置定位"><a href="#YOLOv5-LED-數字辨識模型-amp-數值位置定位" class="headerlink" title="YOLOv5 LED 數字辨識模型 &amp; 數值位置定位"></a>YOLOv5 LED 數字辨識模型 &amp; 數值位置定位</h3><p>使用 YOLOv5 LED 數字辨識模型，得到每個數字的值、預測框、以及位置資訊。最後再將這些資訊轉換為血壓、心跳的數值做輸出。</p>
 <img src="/Sphygmomanometer-Digit-Recognition-System/image13.png" srcset="/img/loading.gif" lazyload class="">
 
             </div>
@@ -243,13 +243,13 @@
                     
                       <a class="hover-with-bg" href="/tags/%E7%94%A2%E5%AD%B8%E5%B0%88%E6%A1%88/">產學專案</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86/">影像處理</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E4%BA%BA%E6%A9%9F%E4%BB%8B%E9%9D%A2/">人機介面</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E7%B3%BB%E7%B5%B1%E8%A8%AD%E8%A8%88/">系統設計</a>
                     
+                      <a class="hover-with-bg" href="/tags/%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86/">影像處理</a>
+                    
                       <a class="hover-with-bg" href="/tags/%E9%82%8A%E7%B7%A3%E9%81%8B%E7%AE%97/">邊緣運算</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%BA%E6%A9%9F%E4%BB%8B%E9%9D%A2/">人機介面</a>
                     
                       <a class="hover-with-bg" href="/tags/APP%E5%AE%A2%E6%88%B6%E7%AB%AF/">APP客戶端</a>
                     
