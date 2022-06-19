@@ -25,13 +25,13 @@
 <meta property="og:locale" content="zh_TW">
 <meta property="og:image" content="https://hirortw.ml/Kaggle-APTOS-2019-Blindness-Detection/index_img.png">
 <meta property="article:published_time" content="2019-08-01T00:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-30T12:30:56.033Z">
+<meta property="article:modified_time" content="2022-06-15T08:10:11.029Z">
 <meta property="article:author" content="Hiro">
+<meta property="article:tag" content="影像處理">
+<meta property="article:tag" content="人機介面">
 <meta property="article:tag" content="大學專題">
 <meta property="article:tag" content="Kaggle">
 <meta property="article:tag" content="大數據競賽">
-<meta property="article:tag" content="影像處理">
-<meta property="article:tag" content="人機介面">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://hirortw.ml/Kaggle-APTOS-2019-Blindness-Detection/index_img.png">
   
@@ -183,10 +183,10 @@
             <h1 style="display: none">Kaggle競賽銀牌: 糖尿病視網膜病變檢測</h1>
             
             <div class="markdown-body">
-              <h1 id="Kaggle競賽銀牌-APTOS2019糖尿病視網膜病變檢測"><a href="#Kaggle競賽銀牌-APTOS2019糖尿病視網膜病變檢測" class="headerlink" title="Kaggle競賽銀牌: APTOS2019糖尿病視網膜病變檢測"></a>Kaggle競賽銀牌: <br>APTOS2019糖尿病視網膜病變檢測</h1><blockquote>
+              <h1 id="Kaggle-競賽銀牌-APTOS2019-糖尿病視網膜病變檢測"><a href="#Kaggle-競賽銀牌-APTOS2019-糖尿病視網膜病變檢測" class="headerlink" title="Kaggle 競賽銀牌: APTOS2019 糖尿病視網膜病變檢測"></a>Kaggle 競賽銀牌: <br>APTOS2019 糖尿病視網膜病變檢測</h1><blockquote>
 <p>此作品為大數據競賽及大學畢業專題</p>
 </blockquote>
-<p>我們參加 APTOS 與 Kaggle 合作舉辦的大數據競賽，使用EfficientNet搭配多種深度神經網路的訓練技巧，建立一套 <strong>全球排名 Top 1% 準確度</strong> 的糖尿病視網膜病變分類網路，並設計簡易圖形化介面，讓使用者容易使用。</p>
+<p>我們參加 APTOS 與 Kaggle 合作舉辦的大數據競賽，使用 EfficientNet 搭配多種深度神經網路的訓練技巧，建立一套 <strong>全球排名 Top 1% 準確度</strong> 的糖尿病視網膜病變分類網路，並設計簡易圖形化介面，讓使用者容易使用。</p>
 <h2 id="比賽簡介"><a href="#比賽簡介" class="headerlink" title="比賽簡介"></a>比賽簡介</h2><img src="/Kaggle-APTOS-2019-Blindness-Detection/cover.png" srcset="/img/loading.gif" lazyload class="">
 
 <p>糖尿病經常引起視網膜病變，導致血管滲漏，造成視網膜組織傷害，以致所看到的影像變成模糊、扭曲或部份喪失。<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/aptos2019-blindness-detection">APTOS 2019 Blindness Detection</a> 提供 50,000 美元獎金池及大量眼底鏡影像，參賽者藉由深度學習技術自動判斷視網膜是否病變或病變之程度。減輕專業醫師負擔，並協助患者及早進行診斷與治療，預防永久失明。</p>
@@ -243,7 +243,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="額外的資料"><a href="#額外的資料" class="headerlink" title="額外的資料"></a>額外的資料</h3><p>2015在 Kaggle 由 California Healthcare Foundation 贊助舉辦的另一場<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/diabetic-retinopathy-detection">糖尿病視網膜病變檢測競賽</a>所提供的資料庫，擁有與本次競賽相同的分類標籤與眼底鏡圖片。可作為本次競賽的擴充資料使用。</p>
+<h3 id="額外的資料"><a href="#額外的資料" class="headerlink" title="額外的資料"></a>額外的資料</h3><p>2015 在 Kaggle 由 California Healthcare Foundation 贊助舉辦的另一場<a target="_blank" rel="noopener" href="https://www.kaggle.com/c/diabetic-retinopathy-detection">糖尿病視網膜病變檢測競賽</a>所提供的資料庫，擁有與本次競賽相同的分類標籤與眼底鏡圖片。可作為本次競賽的擴充資料使用。</p>
 <ul>
 <li><p>35126 Training set</p>
 </li>
@@ -342,8 +342,9 @@ $$
 </tbody></table>
 <img src="/Kaggle-APTOS-2019-Blindness-Detection/leaderboard.png" srcset="/img/loading.gif" lazyload class="">
 
-<h2 id="GUI設計"><a href="#GUI設計" class="headerlink" title="GUI設計"></a>GUI設計</h2><p>使用 PyQt5 設計使用者介面，使模型能被簡易使用。</p>
+<h2 id="GUI-設計"><a href="#GUI-設計" class="headerlink" title="GUI 設計"></a>GUI 設計</h2><p>使用 PyQt5 設計使用者介面，使模型能被簡易使用。</p>
 <div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/Kaggle-APTOS-2019-Blindness-Detection/gui1.png" srcset="/img/loading.gif" lazyload class=""></div><div class="group-image-wrap"><img src="/Kaggle-APTOS-2019-Blindness-Detection/gui2.png" srcset="/img/loading.gif" lazyload class=""></div></div></div>
+
             </div>
             <hr>
             <div>
@@ -353,15 +354,15 @@ $$
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
+                      <a class="hover-with-bg" href="/tags/%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86/">影像處理</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BA%BA%E6%A9%9F%E4%BB%8B%E9%9D%A2/">人機介面</a>
+                    
                       <a class="hover-with-bg" href="/tags/%E5%A4%A7%E5%AD%B8%E5%B0%88%E9%A1%8C/">大學專題</a>
                     
                       <a class="hover-with-bg" href="/tags/Kaggle/">Kaggle</a>
                     
                       <a class="hover-with-bg" href="/tags/%E5%A4%A7%E6%95%B8%E6%93%9A%E7%AB%B6%E8%B3%BD/">大數據競賽</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%BD%B1%E5%83%8F%E8%99%95%E7%90%86/">影像處理</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E4%BA%BA%E6%A9%9F%E4%BB%8B%E9%9D%A2/">人機介面</a>
                     
                   </div>
                 
