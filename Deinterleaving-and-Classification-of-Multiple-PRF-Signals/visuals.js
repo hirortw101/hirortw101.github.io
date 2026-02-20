@@ -51,10 +51,6 @@ class RadarSignalVisualizer {
             this.ctx.fillStyle = pulse.color;
             this.ctx.fillRect(pulse.x, this.height/2 - pulse.height, pulse.width, pulse.height);
 
-            // Draw reflection
-            this.ctx.fillStyle = pulse.color.replace('hsl', 'hsla').replace(')', ', 0.2)');
-            this.ctx.fillRect(pulse.x, this.height/2, pulse.width, pulse.height * 0.5);
-
             // Text info (TOA/PW)
             this.ctx.fillStyle = '#fff';
             this.ctx.font = '10px monospace';

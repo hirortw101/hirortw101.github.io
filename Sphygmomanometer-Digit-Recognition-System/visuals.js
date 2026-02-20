@@ -7,74 +7,158 @@ class BPScanner {
         this.image = new Image();
         this.image.src = imageSrc;
 
-        // Bounding boxes for digits (approximate locations based on image13.png style)
-        // These are normalized coordinates (0-1) to be scaled to canvas size
-        this.boxes = [
-            { x: 0.25, y: 0.35, w: 0.15, h: 0.25, label: 'SYS', color: '#ff4d4d' },
-            { x: 0.55, y: 0.40, w: 0.15, h: 0.20, label: 'DIA', color: '#4dff4d' },
-            { x: 0.45, y: 0.65, w: 0.10, h: 0.15, label: 'PUL', color: '#4d4dff' }
-        ];
+        // Define states
+        this.STATE = {
+            GLARE_DETECTED: 0,
+            ADJUSTING: 1,
+            UPLOADING: 2,
+            RESULT: 3
+        };
+        this.currentState = this.STATE.GLARE_DETECTED;
+        this.stateTimer = 0;
 
-        this.scanY = 0;
-        this.scanning = true;
-        this.scanSpeed = 2;
+        // Visual properties
+        this.glareAlpha = 0.6;
+        this.cameraOffset = { x: 0, y: 0 };
+        this.uploadProgress = 0;
 
         this.image.onload = () => {
-            this.canvas.width = this.image.width / 2; // Scale down for display
-            this.canvas.height = this.image.height / 2;
+            // Scale canvas to match aspect ratio but fit container width if needed
+            // For simplicity, we keep original scaling logic but ensure it fits
+            this.canvas.width = 400;
+            this.canvas.height = 300;
             this.animate();
         };
+    }
+
+    drawGlare(x, y, radius, alpha) {
+        const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
+        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${alpha * 0.5})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
+    drawBox(color, text) {
+        // Draw viewfinder box
+        const pad = 40;
+        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth = 3;
+        this.ctx.strokeRect(pad, pad, this.canvas.width - pad*2, this.canvas.height - pad*2);
+
+        // Draw text background
+        this.ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        const textWidth = this.ctx.measureText(text).width;
+        this.ctx.fillRect(pad, pad - 30, this.canvas.width - pad*2, 30);
+
+        // Draw text
+        this.ctx.fillStyle = '#fff';
+        this.ctx.font = '16px Arial';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText(text, this.canvas.width / 2, pad - 10);
     }
 
     animate() {
         if (!this.canvas) return;
 
-        this.ctx.drawImage(this.image, 0, 0, this.canvas.width, this.canvas.height);
+        // Clear canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Draw scan line
-        if (this.scanning) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(0, this.scanY);
-            this.ctx.lineTo(this.canvas.width, this.scanY);
-            this.ctx.strokeStyle = '#29d';
-            this.ctx.lineWidth = 2;
-            this.ctx.shadowBlur = 10;
-            this.ctx.shadowColor = '#29d';
-            this.ctx.stroke();
-            this.ctx.shadowBlur = 0;
+        // Save context for camera transforms
+        this.ctx.save();
 
-            // Gradient trail
-            const gradient = this.ctx.createLinearGradient(0, this.scanY - 50, 0, this.scanY);
-            gradient.addColorStop(0, 'rgba(41, 221, 221, 0)');
-            gradient.addColorStop(1, 'rgba(41, 221, 221, 0.2)');
-            this.ctx.fillStyle = gradient;
-            this.ctx.fillRect(0, this.scanY - 50, this.canvas.width, 50);
+        // 1. Draw Camera Feed (Image)
+        // Simulate camera movement during ADJUSTING state
+        let dx = 0;
+        let dy = 0;
 
-            this.scanY += this.scanSpeed;
-
-            if (this.scanY > this.canvas.height) {
-                this.scanning = false;
-                setTimeout(() => {
-                    this.scanning = true;
-                    this.scanY = 0;
-                }, 2000); // Wait 2s before restarting
-            }
+        if (this.currentState === this.STATE.ADJUSTING) {
+            // Move camera to "remove" glare
+            const progress = Math.min(1, this.stateTimer / 100);
+            dx = Math.sin(progress * Math.PI) * 10;
+            dy = progress * 20;
+            this.glareAlpha = 0.6 * (1 - progress);
+        } else if (this.currentState !== this.STATE.GLARE_DETECTED) {
+            this.glareAlpha = 0;
+            dy = 20; // Stay in "good" position
         } else {
-            // Draw boxes when scan is complete
-            this.boxes.forEach(box => {
-                const x = box.x * this.canvas.width;
-                const y = box.y * this.canvas.height;
-                const w = box.w * this.canvas.width;
-                const h = box.h * this.canvas.height;
+            this.glareAlpha = 0.6;
+            // Slight jitter in glare state
+            dx = Math.random() * 2 - 1;
+            dy = Math.random() * 2 - 1;
+        }
 
-                this.ctx.strokeStyle = box.color;
-                this.ctx.lineWidth = 2;
-                this.ctx.strokeRect(x, y, w, h);
+        // Draw image with offset
+        this.ctx.drawImage(this.image, -20 + dx, -20 + dy, this.canvas.width + 40, this.canvas.height + 40);
 
-                this.ctx.fillStyle = box.color;
-                this.ctx.font = '14px Arial';
-                this.ctx.fillText(box.label, x, y - 5);
-            });
+        // 2. Draw Glare
+        if (this.glareAlpha > 0.01) {
+            this.drawGlare(this.canvas.width/2 - 50, this.canvas.height/2 - 50, 100, this.glareAlpha);
+        }
+
+        this.ctx.restore();
+
+        // 3. Draw UI Overlays based on State
+        switch(this.currentState) {
+            case this.STATE.GLARE_DETECTED:
+                this.drawBox('#ff4d4d', 'Glare Detected! Move Camera.');
+                if (this.stateTimer++ > 100) {
+                    this.currentState = this.STATE.ADJUSTING;
+                    this.stateTimer = 0;
+                }
+                break;
+
+            case this.STATE.ADJUSTING:
+                this.drawBox('#ffff4d', 'Adjusting angle...');
+                if (this.stateTimer++ > 100) {
+                    this.currentState = this.STATE.UPLOADING;
+                    this.stateTimer = 0;
+                }
+                break;
+
+            case this.STATE.UPLOADING:
+                this.drawBox('#4dff4d', 'Glare Removed. Uploading...');
+
+                // Draw Spinner/Progress
+                this.ctx.fillStyle = 'rgba(0,0,0,0.5)';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.uploadProgress += 2;
+                if (this.uploadProgress > 100) this.uploadProgress = 100;
+
+                // Draw loading bar
+                this.ctx.fillStyle = '#333';
+                this.ctx.fillRect(this.canvas.width/4, this.canvas.height/2 - 10, this.canvas.width/2, 20);
+                this.ctx.fillStyle = '#4dff4d';
+                this.ctx.fillRect(this.canvas.width/4, this.canvas.height/2 - 10, (this.canvas.width/2) * (this.uploadProgress/100), 20);
+
+                this.ctx.fillStyle = '#fff';
+                this.ctx.fillText(`Uploading to Server... ${Math.floor(this.uploadProgress)}%`, this.canvas.width/2, this.canvas.height/2 + 40);
+
+                if (this.stateTimer++ > 120) {
+                    this.currentState = this.STATE.RESULT;
+                    this.stateTimer = 0;
+                }
+                break;
+
+            case this.STATE.RESULT:
+                this.drawBox('#4dff4d', 'Result Received');
+
+                // Simulate overlaying recognized digits
+                this.ctx.font = 'bold 40px Arial';
+                this.ctx.fillStyle = '#0f0';
+                this.ctx.fillText("120 / 80", this.canvas.width/2, this.canvas.height/2);
+                this.ctx.font = '20px Arial';
+                this.ctx.fillText("Heart Rate: 72", this.canvas.width/2, this.canvas.height/2 + 35);
+
+                if (this.stateTimer++ > 200) {
+                    // Reset loop
+                    this.currentState = this.STATE.GLARE_DETECTED;
+                    this.stateTimer = 0;
+                    this.uploadProgress = 0;
+                }
+                break;
         }
 
         requestAnimationFrame(() => this.animate());
