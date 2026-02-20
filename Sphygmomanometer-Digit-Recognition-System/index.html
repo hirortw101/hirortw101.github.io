@@ -37,11 +37,17 @@
 
         <section class="content-section">
             <h2>Detection Demo</h2>
-            <p>The system uses Computer Vision to scan the LCD panel, locate the region of interest, and extract the digits.</p>
+            <p>The interactive demo below simulates the real-time user experience:</p>
+            <ol>
+                <li><strong>Glare Detection (Red Box):</strong> The app identifies reflections on the screen.</li>
+                <li><strong>Camera Adjustment:</strong> The user moves the camera to remove glare.</li>
+                <li><strong>Clear View (Green Box):</strong> Once clear, the image is automatically uploaded.</li>
+                <li><strong>Server Result:</strong> The recognized digits are returned and displayed.</li>
+            </ol>
             <div style="text-align: center; margin-top: 1rem;">
                 <canvas id="scanner-canvas"></canvas>
             </div>
-            <p class="caption">Figure 2: Animated simulation of the scanning and detection process.</p>
+            <p class="caption">Figure 2: Animated simulation of the glare removal and detection process.</p>
         </section>
 
         <section class="content-section">
