@@ -1,0 +1,66 @@
+
+/* BP Scanner Canvas */
+#scanner-canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(41, 221, 221, 0.2);
+}
+
+/* System Diagram */
+.diagram-flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: #222;
+    border-radius: 8px;
+}
+
+.diagram-node {
+    background: #333;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    opacity: 0.6;
+}
+
+.diagram-node.active {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(41, 221, 221, 0.4);
+}
+
+.node-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.node-desc {
+    font-size: 0.8rem;
+    color: #bbb;
+}
+
+.diagram-arrow {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+@media (min-width: 768px) {
+    .diagram-flow {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .diagram-arrow {
+        transform: rotate(0deg);
+    }
+}
